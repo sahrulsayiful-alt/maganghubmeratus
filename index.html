@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistem Otomatisasi Input Data</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background-color: #f4f6f9;
+      color: #333;
+    }
+    header {
+      background-color: #004080;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    section {
+      padding: 20px;
+      margin: 10px auto;
+      max-width: 900px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #004080;
+    }
+    .workflow {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .step {
+      flex: 1;
+      min-width: 200px;
+      margin: 10px;
+      padding: 15px;
+      background: #e9f0f7;
+      border-radius: 6px;
+      text-align: center;
+    }
+    footer {
+      background: #004080;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+    }
+    .form-section {
+      margin-top: 20px;
+    }
+    input[type="file"], button {
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+    #output {
+      margin-top: 15px;
+      padding: 10px;
+      background: #f0f0f0;
+      border-radius: 6px;
+      min-height: 50px;
+    }
+    pre {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Konsep Otomatisasi Penginputan Data</h1>
+    <p>Mengurangi input manual, meningkatkan efisiensi pengelolaan data</p>
+  </header>
+
+  <section>
+    <h2>Alur Sistem</h2>
+    <div class="workflow">
+      <div class="step">
+        <h3>1. Upload Dokumen</h3>
+        <p>Pengguna mengunggah dokumen hasil scan (PDF/JPG/PNG).</p>
+      </div>
+      <div class="step">
+        <h3>2. Proses OCR</h3>
+        <p>Sistem membaca teks dari dokumen menggunakan Optical Character Recognition.</p>
+      </div>
+      <div class="step">
+        <h3>3. Validasi Data</h3>
+        <p>Data hasil ekstraksi diverifikasi agar sesuai format dan standar.</p>
+      </div>
+      <div class="step">
+        <h3>4. Simpan ke Database</h3>
+        <p>Data tersimpan otomatis ke database untuk keperluan analisis dan laporan.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="form-section">
+    <h2>Simulasi Upload & OCR</h2>
+    <form id="uploadForm">
+      <label for="fileInput">Pilih Dokumen:</label><br>
+      <input type="file" id="fileInput" accept=".pdf,.jpg,.png"><br>
+      <button type="button" onclick="processOCR()">Proses OCR</button>
+    </form>
+    <div id="output">Hasil ekstraksi data akan muncul di sini...</div>
+  </section>
+
+  <section>
+    <h2>Contoh Query SQL (Insert ke Database)</h2>
+    <p>Setelah data tervalidasi, sistem dapat menyimpan ke database MySQL dengan query berikut:</p>
+    <pre>
+INSERT INTO dokumen_logistik 
+(no_container, shipper, barang, jumlah, tanggal_scan) 
+VALUES 
+('MRTU 9617842', 'Wijaya Plastik', 'Kertas Polos Ivory DP 31', '30 Koli (30000 Lembar)', NOW());
+    </pre>
+  </section>
+
+  <section>
+    <h2>Keunggulan</h2>
+    <ul>
+      <li>Meminimalisir kesalahan input manual.</li>
+      <li>Mempercepat proses pengolahan data logistik dan administrasi.</li>
+      <li>Data terstruktur dan siap digunakan untuk analisis.</li>
+      <li>Meningkatkan efisiensi operasional perusahaan.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Sistem Otomatisasi Data - Dikembangkan untuk efisiensi bisnis</p>
+  </footer>
+
+  <script>
+    function processOCR() {
+      const file = document.getElementById('fileInput').files[0];
+      const output = document.getElementById('output');
+      if (!file) {
+        output.innerHTML = "Silakan pilih dokumen terlebih dahulu.";
+        return;
+      }
+      // Simulasi hasil OCR
+      output.innerHTML = `
+        <strong>Nama File:</strong> ${file.name}<br>
+        <strong>Hasil OCR:</strong> <br>
+        - Nomor Container: MRTU 9617842 <br>
+        - Shipper: Wijaya Plastik <br>
+        - Barang: Kertas Polos Ivory DP 31 <br>
+        - Jumlah: 30 Koli (30000 Lembar) <br>
+        <em>Data siap disimpan ke database.</em>
+      `;
+    }
+  </script>
+</body>
+</html>
